@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/donate",
+      "destination": "https://www.asgfoundation.com/donate",
+      "permanent": false
+    }
+  ]
+}
