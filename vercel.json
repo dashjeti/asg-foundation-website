@@ -5,10 +5,6 @@
       "destination": "https://asgfoundationc.wixsite.com/asgfoundation/donate"
     },
     {
-      "source": "/privacy-policy",
-      "destination": "https://asgfoundationc.wixsite.com/asgfoundation/privacy-policy"
-    },
-    {
       "source": "/accessibility-statement",
       "destination": "https://asgfoundationc.wixsite.com/asgfoundation/accessibility-statement"
     }
