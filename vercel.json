@@ -1,9 +1,8 @@
 {
-  "redirects": [
+  "rewrites": [
     {
       "source": "/donate",
-      "destination": "https://www.asgfoundation.com/donate",
-      "permanent": false
+      "destination": "https://asgfoundationc.wixsite.com/asgfoundation/donate"
     }
   ]
 }
