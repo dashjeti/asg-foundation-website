@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASG Foundation | Bringing Hope to Zimbabwe</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       RESET & VARIABLES
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark:  #0a3d2e;
+      --green-mid:   #1a6648;
+      --green-light: #2d9b6a;
+      --gold:        #c9943f;
+      --gold-light:  #e8c27a;
+      --cream:       #faf7f2;
+      --cream-dark:  #f0ebe0;
+      --text-dark:   #1a1a1a;
+      --text-mid:    #4a4a4a;
+      --text-light:  #7a7a7a;
+      --white:       #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      color: var(--text-dark);
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 72px;
+      margin-bottom: 0;
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10, 61, 46, 0.97);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      width: 46px;
+      height: 46px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: var(--white);
+    }
+
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      color: var(--white);
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .nav-logo-text span {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--gold-light);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 0.87rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+
+    .nav-donate {
+      background: var(--gold) !important;
+      color: var(--white) !important;
+      padding: 0.5rem 1.3rem;
+      border-radius: 2rem;
+      font-weight: 500 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-donate:hover {
+      background: var(--gold-light) !important;
+      color: var(--text-dark) !important;
+    }
+
+    /* Hamburger (mobile) */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+    }
+
+    /* ============================================================
+       SHARED UTILITIES
+    ============================================================ */
+    section { padding: 6rem 5vw; }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 0.8rem;
+    }
+
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--green-dark);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      color: var(--text-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 0.95rem;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      transition: all 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold-light);
+      color: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    /* Fade-in animation (triggered by IntersectionObserver) */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      min-height: 100vh;
+      background: var(--green-dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 72px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle dot-grid background texture */
+    .hero-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: radial-gradient(circle at 2px 2px, var(--white) 1px, transparent 0);
+      background-size: 32px 32px;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20px 3rem 4rem 5vw;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(201, 148, 63, 0.15);
+      border: 1px solid rgba(201, 148, 63, 0.4);
+      color: var(--gold-light);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border-radius: 2rem;
+      margin-bottom: 1.8rem;
+      width: fit-content;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.12;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.75;
+      max-width: 460px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Right-side image column */
+    .hero-img-col {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      background: linear-gradient(145deg, rgba(10, 61, 46, 0.95), rgba(10, 61, 46, 0.82));
+    }
+
+    .hero-img-col img {
+      width: 100%;
+      height: auto;
+      max-height: calc(100vh - 130px);
+      object-fit: contain;
+      object-position: top center;
+      filter: brightness(0.6) saturate(0.85);
+      display: block;
+    }
+
+    /* Gradient fade from left to blend into hero text area */
+    .hero-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--green-dark) 0%, transparent 40%);
+    }
+
+    .hero-quote {
+      position: absolute;
+      bottom: 3rem;
+      left: 2rem;
+      right: 2rem;
+      background: rgba(10, 61, 46, 0.88);
+      backdrop-filter: blur(8px);
+      border-left: 3px solid var(--gold);
+      padding: 1.2rem 1.5rem;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .hero-quote p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.9rem;
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-quote cite {
+      color: var(--gold-light);
+      font-size: 0.76rem;
+      font-style: normal;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    /* ============================================================
+       MISSION FEATURE
+    ============================================================ */
+    .mission-feature {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      min-height: 360px;
+      border-top: 1px solid rgba(10, 61, 46, 0.08);
+      border-bottom: 1px solid rgba(10, 61, 46, 0.08);
+    }
+
+    .mission-feature-media {
+      position: relative;
+      min-height: 360px;
+      overflow: hidden;
+    }
+
+    .mission-feature-media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(10, 61, 46, 0.35), rgba(10, 61, 46, 0.12));
+      pointer-events: none;
+    }
+
+    .mission-feature-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .mission-feature-copy {
+      background: linear-gradient(165deg, #f8f3e8 0%, #f1e7d1 100%);
+      padding: 2.4rem 2.3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.95rem;
+    }
+
+    .mission-feature-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      line-height: 1.1;
+      color: var(--green-dark);
+      margin: 0;
+    }
+
+    .mission-feature-copy p {
+      color: #304236;
+      font-size: 0.98rem;
+      line-height: 1.8;
+      font-weight: 400;
+      max-width: 44ch;
+    }
+
+    .mission-feature-meta {
+      font-size: 0.74rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #6e5a2f;
+      font-weight: 500;
+    }
+
+    /* ============================================================
+       ABOUT / OUR STORY
+    ============================================================ */
+    .about {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-img-wrap { position: relative; }
+
+    .about-img-wrap img {
+      width: 100%;
+      height: 600px;
+      border-radius: 12px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: var(--green-dark);
+      color: var(--white);
+      padding: 1.2rem 1.6rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(10, 61, 46, 0.25);
+    }
+
+    .about-badge-icon {
+      font-size: 1.6rem;
+      color: var(--gold-light);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .about-badge-text {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      line-height: 1.4;
+    }
+
+    .about-content { padding-right: 2rem; }
+
+    .about-content p {
+      color: var(--text-mid);
+      font-size: 1rem;
+      line-height: 1.85;
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ============================================================
+       PHOTO GALLERY STRIP
+    ============================================================ */
+    .gallery-strip {
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 340px;
+    }
+
+    .gallery-strip img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      filter: brightness(0.88);
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .gallery-strip img:hover {
+      transform: scale(1.03);
+      filter: brightness(1);
+    }
+
+    /* ============================================================
+       VALUES
+    ============================================================ */
+    .values {
+      background: linear-gradient(180deg, #f8f4eb 0%, #f3eee3 100%);
+      text-align: center;
+    }
+
+    .values-header {
+      max-width: 600px;
+      margin: 0 auto 2.4rem;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.05rem;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .value-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 1.7rem 1.3rem;
+      text-align: left;
+      border: 1px solid rgba(10, 61, 46, 0.09);
+      box-shadow: 0 10px 26px rgba(10, 61, 46, 0.05);
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+
+    .value-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(10, 61, 46, 0.2);
+      box-shadow: 0 14px 34px rgba(10, 61, 46, 0.12);
+    }
+
+    .value-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, rgba(45, 155, 106, 0.16), rgba(45, 155, 106, 0.06));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.95rem;
+      color: var(--green-dark);
+      border: 1px solid rgba(10, 61, 46, 0.12);
+    }
+
+    .value-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .value-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 0.45rem;
+    }
+
+    .value-card p {
+      font-size: 0.86rem;
+      color: var(--text-light);
+      line-height: 1.68;
+      font-weight: 400;
+    }
+
+    /* ============================================================
+       CAMPAIGNS
+    ============================================================ */
+    .campaigns { background: var(--white); }
+
+    .campaigns-header {
+      max-width: 640px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+
+    /* Dashed placeholder card, shown when no campaign is active.
+       To add a live campaign, replace this card with a campaign card. */
+    .campaign-placeholder {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 3rem 2.5rem;
+      text-align: center;
+      border: 2px dashed rgba(10, 61, 46, 0.18);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .campaign-placeholder .icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .campaign-placeholder h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--green-dark);
+      margin-bottom: 0.6rem;
+    }
+
+    .campaign-placeholder p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ============================================================
+       DONATE CTA
+    ============================================================ */
+    .donate-cta {
+      background: var(--green-dark);
+      text-align: center;
+      padding: 5rem 5vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .donate-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: radial-gradient(circle at 2px 2px, var(--white) 1px, transparent 0);
+      background-size: 32px 32px;
+      pointer-events: none;
+    }
+
+    .donate-inner { position: relative; z-index: 2; }
+
+    .donate-cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--white);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .donate-sub {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 1rem;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+
+    .donate-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+      max-width: 480px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .donate-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 0.35rem;
+    }
+
+    .donate-card .sub {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-bottom: 1.8rem;
+      font-weight: 300;
+    }
+
+    /* Preset amount buttons */
+    .amount-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .amount-btn {
+      border: 1.5px solid #e0ddd6;
+      background: var(--cream);
+      border-radius: 10px;
+      padding: 0.7rem 0.4rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--green-dark);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+
+    .amount-btn:hover,
+    .amount-btn.active {
+      background: var(--green-dark);
+      border-color: var(--green-dark);
+      color: var(--white);
+    }
+
+    .donate-input-row {
+      display: flex;
+      align-items: stretch;
+      border: 1.5px solid #e0ddd6;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 1.4rem;
+    }
+
+    .donate-input-row span {
+      padding: 0 1rem;
+      color: var(--text-light);
+      font-size: 1rem;
+      font-weight: 500;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      border-right: 1.5px solid #e0ddd6;
+    }
+
+    .donate-input-row input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 0.8rem 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      color: var(--text-dark);
+      background: var(--white);
+    }
+
+    .donate-textarea {
+      width: 100%;
+      border: 1.5px solid #e0ddd6;
+      border-radius: 10px;
+      padding: 0.8rem 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      color: var(--text-dark);
+      resize: vertical;
+      min-height: 76px;
+      margin-bottom: 1.4rem;
+      outline: none;
+    }
+
+    .donate-textarea:focus { border-color: var(--green-light); }
+
+    /* The donate button links through to the Wix payment page */
+    .btn-donate-submit {
+      width: 100%;
+      background: var(--green-dark);
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      padding: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .btn-donate-submit:hover {
+      background: var(--green-mid);
+      transform: translateY(-1px);
+    }
+
+    .donate-note {
+      margin-top: 0.9rem;
+      font-size: 0.75rem;
+      color: var(--text-light);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .support-panel {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .support-panel .section-tag {
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .support-panel h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      color: var(--green-dark);
+      line-height: 1.08;
+      margin-bottom: 1rem;
+    }
+
+    .support-panel p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--text-mid);
+      max-width: 720px;
+      margin: 0 auto 1.8rem;
+      font-weight: 300;
+    }
+
+    .support-panel .btn-primary {
+      padding: 1rem 2.2rem;
+    }
+
+    .support-panel .support-note {
+      margin-top: 1rem;
+      font-size: 0.78rem;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    .legal-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      padding: 1.2rem;
+      background: rgba(6, 31, 23, 0.72);
+      backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .legal-modal.open {
+      display: flex;
+    }
+
+    .legal-modal-card {
+      width: min(920px, 100%);
+      max-height: min(88vh, 980px);
+      overflow: auto;
+      background: var(--cream);
+      border-radius: 24px;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(10, 61, 46, 0.15);
+    }
+
+    .legal-modal-header {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: var(--green-dark);
+      color: var(--white);
+      padding: 1.35rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .legal-modal-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.85rem);
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .legal-modal-close {
+      border: none;
+      background: transparent;
+      color: var(--white);
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0.2rem;
+      margin-left: 1rem;
+    }
+
+    .legal-modal-body {
+      padding: 1.8rem 1.5rem 2rem;
+      color: var(--text-dark);
+    }
+
+    .legal-modal-body p,
+    .legal-modal-body li {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text-mid);
+    }
+
+    .legal-modal-body h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.08rem;
+      color: var(--green-dark);
+      margin: 1.25rem 0 0.4rem;
+    }
+
+    .legal-modal-body ol {
+      padding-left: 1.2rem;
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .legal-modal-body a {
+      color: var(--green-mid);
+      word-break: break-word;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    /* ============================================================
+       MEET THE TEAM
+    ============================================================ */
+    .team { background: var(--white); }
+
+    .team-header {
+      max-width: 640px;
+      margin: 0 auto 3.5rem;
+      text-align: center;
+    }
+
+    .team-intro {
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+      font-weight: 300;
+      margin-top: 0.8rem;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .team-card {
+      background: var(--cream);
+      border-radius: 20px;
+      overflow: hidden;
+      padding: 1.7rem 1.3rem 1.4rem;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .team-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(10, 61, 46, 0.1);
+    }
+
+    /* Team photo, faces framed via object-position on each <img> tag */
+    .team-card-img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      display: block;
+      border: 3px solid rgba(10, 61, 46, 0.08);
+    }
+
+    .team-card-body {
+      padding: 0.25rem 0.35rem;
+      text-align: center;
+    }
+
+    .team-card-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 0.2rem;
+    }
+
+    .team-card-role {
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .team-card-body p {
+      font-size: 0.87rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      font-weight: 300;
+      text-align: left;
+    }
+
+    /* Memorial card for Alban Sekeso Gundu */
+    .team-memorial-wrap {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+
+    .team-memorial {
+      background: var(--green-dark);
+      border-radius: 20px;
+      padding: 2.5rem 3rem;
+      text-align: center;
+      border: 1px solid rgba(201, 148, 63, 0.3);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .memorial-icon {
+      font-size: 2rem;
+      color: var(--gold-light);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .team-memorial h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+
+    .team-memorial .team-card-role { color: var(--gold-light); }
+
+    .team-memorial p {
+      font-size: 0.87rem;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+     /* ============================================================
+       BLOG (placeholder, ready for future posts)
+    ============================================================ */
+    .blog { background: var(--cream); }
+
+    .blog-header {
+      max-width: 640px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+
+    .blog-placeholder {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 3rem 2.5rem;
+      text-align: center;
+      border: 2px dashed rgba(10, 61, 46, 0.18);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .blog-placeholder .icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .blog-placeholder h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--green-dark);
+      margin-bottom: 0.6rem;
+    }
+
+    .blog-placeholder p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* ============================================================
+       CONTACT
+    ============================================================ */
+    .contact {
+      background: var(--cream-dark);
+      padding: 5rem 5vw;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--green-dark);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .contact-sub {
+      color: var(--text-mid);
+      font-size: 1rem;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.75;
+    }
+
+    .contact-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-email {
+      color: var(--green-mid);
+      text-decoration: none;
+      font-size: 1rem;
+      border-bottom: 1px solid rgba(26, 102, 72, 0.4);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+
+    .contact-email:hover { border-color: var(--green-mid); }
+
+    .social-links { display: flex; gap: 0.8rem; }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(10, 61, 46, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--text-mid);
+      font-size: 0.74rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .social-link:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: #061f17;
+      padding: 2rem 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer p {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.35);
+      line-height: 1.6;
+    }
+
+    footer a {
+      color: rgba(255, 255, 255, 0.45);
+      text-decoration: none;
+      font-size: 0.78rem;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--gold-light); }
+
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 900px) {
+      nav { padding: 0 1.5rem; }
+
+      .nav-links { display: none; }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 72px; left: 0; right: 0;
+        background: var(--green-dark);
+        padding: 1.5rem 2rem;
+        gap: 1.2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 99;
+      }
+
+      .nav-hamburger { display: flex; }
+
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-content { padding: 20px 1.5rem 3rem; }
+      .hero-img-col {
+        height: auto;
+        min-height: 260px;
+        padding: 1rem;
+      }
+
+      .hero-img-col img {
+        width: 100%;
+        height: auto;
+        max-height: 360px;
+      }
+
+      .about { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+      .about-content { padding-right: 0; }
+      .about-badge { right: 0; }
+      .about-img-wrap img { height: 460px; }
+
+      .mission-feature {
+        grid-template-columns: 1fr;
+      }
+
+      .mission-feature-media {
+        min-height: 240px;
+      }
+
+      .mission-feature-copy {
+        padding: 2rem 1.5rem;
+      }
+
+      .support-panel {
+        padding: 2.2rem 1.5rem;
+      }
+
+      section { padding: 4rem 1.5rem; }
+
+      .gallery-strip { height: 220px; }
+
+      .amount-grid { grid-template-columns: repeat(2, 1fr); }
+
+      footer { flex-direction: column; align-items: flex-start; }
+
+      .team-memorial-wrap { grid-column: 1; }
+    }
+
+    @media (max-width: 600px) {
+      .gallery-strip { grid-template-columns: 1fr; height: auto; }
+      .gallery-strip img { height: 220px; }
+      .hero-quote { bottom: 1rem; left: 1rem; right: 1rem; }
+
+      .hero-img-col {
+        min-height: 220px;
+        padding: 0.8rem;
+      }
+
+      .hero-img-col img {
+        max-height: 280px;
+      }
+
+      .legal-modal {
+        padding: 0.6rem;
+      }
+
+      .legal-modal-body {
+        padding: 1.4rem 1.1rem 1.6rem;
+      }
+
+      .about-img-wrap img { height: 360px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav>
+    <a href="#home" class="nav-logo">
+      <!-- Logo file must be in the same folder as this index.html -->
+      <img src="ASG Foundation logo.jpeg" alt="ASG Foundation Logo">
+      <div class="nav-logo-text">
+        ASG Foundation
+        <span>Zimbabwe &bull; Est. 2025</span>
+      </div>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">Our Story</a></li>
+      <li><a href="#values">Our Values</a></li>
+      <li><a href="#campaigns">Campaigns</a></li>
+      <li><a href="#team">The Team</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://www.asgfoundation.com/donate" target="_blank" class="nav-donate">Donate Now</a></li>
+    </ul>
+
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" id="home">
+    <div class="hero-pattern"></div>
+
+    <div class="hero-content fade-in">
+      <div class="hero-tag">501(c)(3) Non-profit &bull; EIN: 39-2409653</div>
+      <h1>Restoring <em>dignity</em>,<br>inspiring hope.</h1>
+      <p class="hero-sub">
+        We support orphans, children with disabilities, and widows across Zimbabwe,
+        honouring the legacy of Alban Sekeso Gundu through compassion and action.
+      </p>
+      <div class="hero-ctas">
+        <a href="https://www.asgfoundation.com/donate" target="_blank" class="btn-primary">Donate Now &rarr;</a>
+        <a href="#about" class="btn-outline">Learn Our Story</a>
+      </div>
+    </div>
+
+    <div class="hero-img-col">
+      <!-- Hero image: children waiting in line in Zimbabwe -->
+      <img src="Image of Children 1.avif" alt="Children in Zimbabwe supported by the ASG Foundation">
+      <div class="hero-img-overlay"></div>
+      <div class="hero-quote">
+        <p>"Every blanket distributed, every borehole dug, every child's life touched."</p>
+        <cite>ASG Foundation Mission</cite>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       MISSION FEATURE
+  ============================================================ -->
+  <section class="mission-feature" id="mission">
+    <div class="mission-feature-media">
+      <img src="mission-hero.jpg.jpg" alt="Children and families supported by ASG Foundation in Zimbabwe">
+    </div>
+    <div class="mission-feature-copy fade-in">
+      <span class="mission-feature-meta">Our Mission</span>
+      <h2 class="mission-feature-title">Our Mission</h2>
+      <p>
+        Our mission is to bring hope, dignity, and essential support to orphans, widows, and
+        children with disabilities in Zimbabwe. Through practical compassion, accountable
+        partnership, and a community-led outreach programme, we help families face each day with strength.
+      </p>
+      <a href="#about" class="btn-primary">Learn More &rarr;</a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       OUR STORY
+  ============================================================ -->
+  <section class="about" id="about">
+    <div class="about-img-wrap fade-in">
+      <!-- Community image showing the people the foundation serves -->
+      <img src="mission-portrait.jpg.jpg" alt="Community members supported by the ASG Foundation in Zimbabwe">
+      <div class="about-badge">
+        <span class="about-badge-icon">&#9825;</span>
+        <span class="about-badge-text">In memory of<br>Alban S. Gundu</span>
+      </div>
+    </div>
+
+    <div class="about-content fade-in">
+      <span class="section-tag">Our Story</span>
+      <h2 class="section-title">A legacy of love, carried forward.</h2>
+      <p>
+        The ASG Foundation was created to honour the legacy of <strong>Alban Sekeso Gundu</strong>,
+        a man remembered for his compassion, humility, and unwavering commitment to helping others.
+        ASG stands for his name, and through it, we carry his values and heart for service.
+      </p>
+      <p>
+        We are a non-profit organisation dedicated to supporting orphans (ages 0&ndash;18), widows,
+        and children with disabilities in Zimbabwe. Through compassionate, hands-on engagement, we
+        strive to restore dignity, meet urgent needs, and inspire hope in underserved communities.
+      </p>
+      <p>
+        We work in close partnership with local foundations across Zimbabwe to identify those in
+        greatest need and respond with tangible support. Whether you're here to give, learn, or
+        partner with us, thank you for being part of this mission.
+      </p>
+      <a href="https://www.asgfoundation.com/donate" target="_blank" class="btn-primary" style="margin-top: 1rem;">
+        Support the Mission &rarr;
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       PHOTO GALLERY STRIP
+  ============================================================ -->
+  <div class="gallery-strip">
+    <img src="Image of Children 1.avif" alt="Children in Zimbabwe waiting to receive support">
+    <img src="Image of Children 2.avif" alt="Young children supported by the ASG Foundation">
+  </div>
+
+
+  <!-- ============================================================
+       VALUES
+  ============================================================ -->
+  <section class="values" id="values">
+    <div class="values-header fade-in">
+      <span class="section-tag">What We Stand For</span>
+      <h2 class="section-title">Guided by values, driven by purpose.</h2>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-card fade-in">
+        <div class="value-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 20c-3.4-2.7-7-5.8-7-9.7 0-2.5 1.8-4.3 4.2-4.3 1.5 0 2.7.6 3.8 2 1.1-1.4 2.3-2 3.8-2 2.4 0 4.2 1.8 4.2 4.3 0 3.9-3.6 7-7 9.7Z"/>
+          </svg>
+        </div>
+        <h3>Compassion</h3>
+        <p>We lead with empathy, recognising the struggles of those we serve and treating every life with dignity and care.</p>
+      </div>
+      <div class="value-card fade-in">
+        <div class="value-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M7 20V9m5 11V9m5 11V9"/>
+            <path d="M5 9h14M4 20h16"/>
+            <path d="M6 9 8.2 4h7.6L18 9"/>
+          </svg>
+        </div>
+        <h3>Legacy</h3>
+        <p>Founded in honour of Alban Sekeso Gundu, whose life inspired love, humility, and service. We carry his spirit in every act of kindness.</p>
+      </div>
+      <div class="value-card fade-in">
+        <div class="value-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <circle cx="8" cy="12" r="4.5"/>
+            <circle cx="16" cy="12" r="4.5"/>
+          </svg>
+        </div>
+        <h3>Collaboration</h3>
+        <p>We believe we go further together, working alongside trusted foundations and local leaders who know their communities best.</p>
+      </div>
+      <div class="value-card fade-in">
+        <div class="value-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 3 20 12 12 21 4 12 12 3Z"/>
+          </svg>
+        </div>
+        <h3>Integrity</h3>
+        <p>We are committed to transparency, accountability, and honesty in all we do with donors, partners, and the families we serve.</p>
+      </div>
+      <div class="value-card fade-in">
+        <div class="value-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M3.5 16.5h17"/>
+            <path d="M6.5 16.5a5.5 5.5 0 1 1 11 0"/>
+            <path d="M12 4v2.3M7.4 5.2l1.4 1.4M16.6 5.2l-1.4 1.4"/>
+          </svg>
+        </div>
+        <h3>Hope</h3>
+        <p>Even in the most difficult circumstances, we believe change is possible. Hope fuels everything we do.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CAMPAIGNS
+       To add a campaign: replace the .campaign-placeholder div
+       with a campaign card containing the campaign details,
+       a progress bar, and a link to the Wix donation page.
+  ============================================================ -->
+  <section class="campaigns" id="campaigns">
+    <div class="campaigns-header fade-in">
+      <span class="section-tag">Campaigns</span>
+      <h2 class="section-title">Making a difference, one campaign at a time.</h2>
+      <p class="section-desc" style="max-width: 520px; margin: 0 auto;">
+        When a campaign is active, it will appear right here. Every campaign funds a specific,
+        tangible need for vulnerable communities in Zimbabwe.
+      </p>
+    </div>
+
+    <div class="campaign-placeholder fade-in">
+      <span class="icon">&#127963;</span>
+      <h3>No active campaign right now</h3>
+      <p>
+        Check back soon, our next campaign is on its way. In the meantime, you can still
+        make a general donation to support our ongoing work in Zimbabwe.
+      </p>
+      <a href="https://www.asgfoundation.com/donate" target="_blank" class="btn-primary" style="display: inline-flex; margin: 0 auto;">
+        Donate Now &rarr;
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       DONATE CTA
+       The "Donate Now" button links to the existing Wix donation
+       page which handles all secure payment processing.
+  ============================================================ -->
+  <section class="donate-cta" id="donate">
+    <div class="donate-pattern"></div>
+    <div class="support-panel fade-in">
+      <span class="section-tag">Support our Mission</span>
+      <h2>Support our Mission</h2>
+      <p>
+        Your generosity directly empowers orphans, widows, and children with disabilities across
+        Zimbabwe. To ensure the highest level of security, you will be redirected to our encrypted
+        Wix donation portal to complete your gift.
+      </p>
+      <a href="https://www.asgfoundation.com/donate" target="_blank" class="btn-primary">Proceed to Secure Donation</a>
+      <p class="support-note">
+        ASG Foundation is a 501(c)(3) non-profit. All donations are tax-deductible.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       MEET THE TEAM
+       object-position: top center is set on each team photo
+       to ensure faces are correctly framed.
+  ============================================================ -->
+  <section class="team" id="team">
+    <div class="team-header fade-in">
+      <span class="section-tag">Meet the Team</span>
+      <h2 class="section-title">The people behind the mission.</h2>
+      <p class="team-intro">
+        A passionate group of individuals dedicated to creating meaningful impact through
+        compassion, collaboration, and community service.
+      </p>
+    </div>
+
+    <div class="team-grid">
+
+      <!-- Rudo Gundu -->
+      <div class="team-card fade-in">
+        <img
+          class="team-card-img"
+          src="Rudo Gundu image.avif"
+          alt="Rudo Gundu, Founder and CEO of ASG Foundation"
+          style="object-position: top center;">
+        <div class="team-card-body">
+          <h3>Rudo Gundu</h3>
+          <span class="team-card-role">Founder &amp; Chief Executive Officer</span>
+          <p>
+            Rudo founded ASG Foundation in loving memory of her late father, Alban Sekeso Gundu.
+            Based in Atlanta, Georgia, she brings a global perspective and deep sense of purpose
+            to her work, and has also contributed to Kurera Children's Trust in Zimbabwe. She
+            works for a software company empowering non-profits through technology, an
+            alignment that echoes her own commitment to service.
+          </p>
+        </div>
+      </div>
+
+      <!-- Jordash Manyangadze -->
+      <div class="team-card fade-in">
+        <img
+          class="team-card-img"
+          src="Jordash Munashe Manyangadze image.jpg"
+          alt="Jordash Manyangadze, Administrative Manager"
+          style="object-position: top center;">
+        <div class="team-card-body">
+          <h3>Jordash Manyangadze</h3>
+          <span class="team-card-role">Administrative Manager</span>
+          <p>
+            A Finance and Accounting student based in South Africa, originally from Zimbabwe.
+            Jordash leads awareness and outreach campaigns, handles administrative tasks, and
+            supports marketing efforts. Passionate about financial literacy and community
+            development, he is dedicated to making a meaningful difference both behind the scenes
+            and on the ground.
+          </p>
+        </div>
+      </div>
+
+      <!-- Tsitsi Chingoka -->
+      <div class="team-card fade-in">
+        <img
+          class="team-card-img"
+          src="Tsitsi Chingoka image.avif"
+          alt="Tsitsi Chingoka, Director of Finance and Marketing"
+          style="object-position: top center;">
+        <div class="team-card-body">
+          <h3>Tsitsi Chingoka</h3>
+          <span class="team-card-role">Director of Finance &amp; Marketing</span>
+          <p>
+            A purpose-driven marketing and business development professional with over 10 years
+            of experience across pharmaceutical, FMCG, and NGO sectors. Tsitsi holds a BSc
+            Honours in Marketing, an MBA, and diplomas in Project Management and Digital
+            Marketing. She brings deep compassion, integrity, and social responsibility to
+            everything she does.
+          </p>
+        </div>
+      </div>
+
+      <!-- Alban Sekeso Gundu, memorial card -->
+      <div class="team-memorial-wrap fade-in">
+        <div class="team-memorial">
+          <span class="memorial-icon">&#9825;</span>
+          <h3>Alban Sekeso Gundu</h3>
+          <span class="team-card-role">Our Inspiration &amp; Namesake</span>
+          <p>
+            The ASG Foundation is named in his memory. A man of unwavering compassion, humility,
+            and service. His legacy lives on in every life we touch.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+        BLOG (placeholder, add posts here when ready)
+  ============================================================ -->
+  <section class="blog" id="blog">
+    <div class="blog-header fade-in">
+      <span class="section-tag">Stories &amp; Updates</span>
+      <h2 class="section-title">Our Blog</h2>
+      <p class="section-desc" style="max-width: 520px; margin: 0 auto;">
+        Follow our journey. We'll share stories from the field, campaign updates, and
+        reflections on our work in Zimbabwe.
+      </p>
+    </div>
+
+    <div class="blog-placeholder fade-in">
+      <span class="icon">&#9997;</span>
+      <h3>Blog posts coming soon</h3>
+      <p>
+        Our first stories are on their way. Check back soon for updates from the field,
+        behind-the-scenes moments, and news about our campaigns.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CONTACT
+  ============================================================ -->
+  <section class="contact" id="contact">
+    <h2 class="fade-in">Get in touch</h2>
+    <p class="contact-sub fade-in">
+      Whether you'd like to donate, partner with us, or simply learn more about our work
+      in Zimbabwe, we'd love to hear from you.
+    </p>
+    <div class="contact-links fade-in">
+      <a href="mailto:asgfoundationc@gmail.com" class="contact-email">asgfoundationc@gmail.com</a>
+      <div class="social-links">
+        <a href="https://www.instagram.com/asgfoundationc?igsh=NWZna3RjYzZjb3F0&utm_source=qr"
+           target="_blank" class="social-link" title="Instagram">IG</a>
+        <a href="https://www.facebook.com/share/16ezTBbfG7/?mibextid=wwXIfr"
+           target="_blank" class="social-link" title="Facebook">FB</a>
+        <a href="https://x.com/asgfoundationc"
+           target="_blank" class="social-link" title="X / Twitter">X</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <p>
+      &copy; 2025 ASG Foundation. All rights reserved.<br>
+      501(c)(3) Non-profit &bull; EIN: 39-2409653 &bull; All donations are tax-deductible.
+    </p>
+    <div class="footer-links">
+      <a href="https://www.asgfoundation.com/_files/ugd/dd6849_27baae099e464a7794079c77bb44a551.pdf"
+         target="_blank">Privacy Policy</a>
+      <a href="https://www.asgfoundation.com/blank-1"
+         target="_blank" id="accessibilityLink">Accessibility Statement</a>
+      <a href="mailto:asgfoundationc@gmail.com">Contact Us</a>
+    </div>
+  </footer>
+
+
+  <div class="legal-modal" id="legalModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="legalModalTitle">
+    <div class="legal-modal-card">
+      <div class="legal-modal-header">
+        <h3 id="legalModalTitle">Accessibility Statement &amp; Terms of Use (Effective: 9th June 2025)</h3>
+        <button class="legal-modal-close" id="legalModalClose" type="button" aria-label="Close">X</button>
+      </div>
+      <div class="legal-modal-body">
+        <p>ASG Foundation</p>
+        <p>We are committed to maintaining a website that is accessible, secure, and respectful to all visitors. By using this website, you agree to the following terms and conditions.</p>
+        <ol>
+          <li><strong>Acceptance of Terms:</strong> By accessing or using the ASG Foundation website, you agree to be bound by these Terms of Use. If you do not agree with any part of these terms, please do not use our website.</li>
+          <li><strong>Use of Website:</strong> You agree to use our website for lawful purposes only. You may not use it in any way that could damage, disable, overburden, or impair the site or interfere with any other party's use of the site.</li>
+          <li><strong>Intellectual Property:</strong> All content on this website, including text, images, graphics, and logos, is the property of ASG Foundation or its content suppliers and is protected by copyright and intellectual property laws. You may not copy, reproduce, or distribute any part of this site without prior written consent.</li>
+          <li><strong>Donations:</strong> All donations made through our website are voluntary. We use secure third-party services to process donations and do not store your payment information. If you believe you made a donation in error, please contact us by email, we will be happy to assist you.</li>
+          <li><strong>Links to Other Sites:</strong> Our website may contain links to third-party websites. ASG Foundation is not responsible for the content, privacy policies, or practices of any linked websites. Access them at your own risk.</li>
+          <li><strong>Disclaimer of Warranties:</strong> The website is provided on an 'as-is' and 'as-available' basis. We do not guarantee that the website will be uninterrupted or error-free. To the fullest extent permitted by law, we disclaim all warranties, express or implied.</li>
+          <li><strong>Limitation of Liability:</strong> ASG Foundation shall not be liable for any damages resulting from your use of or inability to use the website, including but not limited to indirect or consequential damages.</li>
+          <li><strong>Changes to Terms:</strong> We may update these Terms of Use from time to time. Changes will be posted on this page, and your continued use of the site constitutes acceptance of the updated terms.</li>
+          <li><strong>Contact Information:</strong> If you have any questions about these Terms of Use, please contact us at ASG Foundation. Email: asgfoundationc@gmail.com</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    /* --- Mobile nav toggle --- */
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    const accessibilityLink = document.getElementById('accessibilityLink');
+    const legalModal = document.getElementById('legalModal');
+    const legalModalClose = document.getElementById('legalModalClose');
+
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(link =>
+      link.addEventListener('click', () => navLinks.classList.remove('open'))
+    );
+
+    function openLegalModal() {
+      legalModal.classList.add('open');
+      legalModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+    }
+
+    function closeLegalModal() {
+      legalModal.classList.remove('open');
+      legalModal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+    }
+
+    accessibilityLink.addEventListener('click', event => {
+      event.preventDefault();
+      openLegalModal();
+    });
+
+    legalModalClose.addEventListener('click', closeLegalModal);
+
+    legalModal.addEventListener('click', event => {
+      if (event.target === legalModal) {
+        closeLegalModal();
+      }
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && legalModal.classList.contains('open')) {
+        closeLegalModal();
+      }
+    });
+
+    /* --- Fade-in on scroll ---
+         Elements with .fade-in become visible as they enter the viewport. */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
