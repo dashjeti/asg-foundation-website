@@ -1091,7 +1091,7 @@
     }
 
      /* ============================================================
-       BLOG (placeholder, ready for future posts)
+       BLOG (posts)
     ============================================================ */
     .blog { background: var(--cream); }
 
@@ -1101,34 +1101,65 @@
       text-align: center;
     }
 
-    .blog-placeholder {
+    .blog-post-card {
       background: var(--white);
       border-radius: 16px;
-      padding: 3rem 2.5rem;
-      text-align: center;
-      border: 2px dashed rgba(10, 61, 46, 0.18);
+      padding: 1.15rem;
+      border: 1px solid rgba(10, 61, 46, 0.12);
+      box-shadow: 0 10px 26px rgba(10, 61, 46, 0.05);
       max-width: 560px;
       margin: 0 auto;
     }
 
-    .blog-placeholder .icon {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
+    .blog-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: #111111;
+      color: var(--white);
+      border-radius: 999px;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.73rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.9rem;
+    }
+
+    .blog-badge .x-mark {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--white);
+      color: #111111;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.66rem;
+      font-weight: 700;
+      line-height: 1;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .blog-post-image {
+      width: 100%;
+      height: auto;
       display: block;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      object-fit: cover;
     }
 
-    .blog-placeholder h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      color: var(--green-dark);
-      margin-bottom: 0.6rem;
-    }
-
-    .blog-placeholder p {
+    .blog-caption {
       font-size: 0.9rem;
-      color: var(--text-light);
+      color: var(--text-mid);
       line-height: 1.75;
       font-weight: 300;
+      margin-bottom: 1.15rem;
+    }
+
+    .blog-post-card .btn-primary {
+      width: 100%;
+      justify-content: center;
     }
 
     /* ============================================================
@@ -1296,6 +1327,10 @@
       footer { flex-direction: column; align-items: flex-start; }
 
       .team-memorial-wrap { grid-column: 1; }
+
+      .blog-post-card {
+        padding: 1rem;
+      }
     }
 
     @media (max-width: 600px) {
@@ -1321,6 +1356,14 @@
       }
 
       .about-img-wrap img { height: 360px; }
+
+      .blog-badge {
+        font-size: 0.7rem;
+      }
+
+      .blog-caption {
+        font-size: 0.88rem;
+      }
     }
   </style>
 </head>
@@ -1665,25 +1708,27 @@
 
 
   <!-- ============================================================
-        BLOG (placeholder, add posts here when ready)
+        BLOG
   ============================================================ -->
   <section class="blog" id="blog">
     <div class="blog-header fade-in">
       <span class="section-tag">Stories &amp; Updates</span>
-      <h2 class="section-title">Our Blog</h2>
+      <h2 class="section-title">Blogs and Posts</h2>
       <p class="section-desc" style="max-width: 520px; margin: 0 auto;">
         Follow our journey. We'll share stories from the field, campaign updates, and
         reflections on our work in Zimbabwe.
       </p>
     </div>
 
-    <div class="blog-placeholder fade-in">
-      <span class="icon">&#9997;</span>
-      <h3>Blog posts coming soon</h3>
-      <p>
-        Our first stories are on their way. Check back soon for updates from the field,
-        behind-the-scenes moments, and news about our campaigns.
+    <div class="blog-post-card fade-in">
+      <span class="blog-badge"><span class="x-mark">X</span> Latest from X</span>
+      <img src="Twitter  X Post - Nearly 1 in 7 children in Zimbabwe won't complete primary school..png" alt="Children in Zimbabwe supported by ASG Foundation" class="blog-post-image">
+      <p class="blog-caption">
+        Nearly 1 in 7 children in Zimbabwe won't complete primary school. Not because they don't want to. Because poverty, disability, and school fees stand in the way. At ASG Foundation, we are removing those barriers — one backpack, one school fee, one child at a time. Were you surprised by this statistic? Comment YES or NO. Every share raises awareness. 💚 #DidYouKnow #ZimbabweEducation #ASGFoundation
       </p>
+      <a href="https://x.com/asgfoundationc/status/2051368620505063624?s=20" target="_blank" rel="noopener noreferrer" class="btn-primary">
+        View post on X &#8594;
+      </a>
     </div>
   </section>
 
