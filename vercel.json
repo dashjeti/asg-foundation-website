@@ -5,6 +5,10 @@
       "destination": "https://asgfoundationc.wixsite.com/asgfoundation/donate"
     },
     {
+      "source": "/checkout",
+      "destination": "https://asgfoundationc.wixsite.com/asgfoundation/checkout"
+    },
+    {
       "source": "/accessibility-statement",
       "destination": "https://asgfoundationc.wixsite.com/asgfoundation/accessibility-statement"
     }
